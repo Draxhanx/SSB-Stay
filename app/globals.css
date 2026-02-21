@@ -1,30 +1,51 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@variant dark (&:where(.dark, .dark *));
 
-.dark {
-  --background: #0a0a0a;
-  --foreground: #ededed;
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #111827;
+    --card: #ffffff;
+    --border: #e5e7eb;
+  }
+
+  .dark {
+    --background: #0a0a0a;
+    --foreground: #f9fafb;
+    --card: #111827;
+    --border: #1f2937;
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  
   --font-sans: var(--font-inter);
   --font-heading: var(--font-poppins);
   
-  --color-primary: #006666; /* Deep Teal */
+  --color-primary: #006666;
   --color-primary-dark: #004d4d;
-  --color-secondary: #ff9933; /* Light Orange */
+  --color-secondary: #ff9933;
   --color-secondary-light: #fff5e6;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+  font-family: var(--font-sans);
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Explicit fallback for dark mode if utilities fail */
+.dark body {
+  background-color: var(--background) !important;
+  color: var(--foreground) !important;
+}
+
+.dark main, .dark section {
+  background-color: var(--background);
 }

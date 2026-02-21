@@ -27,7 +27,7 @@ const FAQ = () => {
   return (
     <section
       id="faq"
-      className="py-20 bg-secondary-light/20 dark:bg-gray-900 transition-colors duration-300"
+      className="py-20 bg-background transition-colors duration-300"
     >
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
@@ -45,7 +45,7 @@ const FAQ = () => {
             return (
               <div
                 key={index}
-                className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-secondary/10 dark:border-gray-700 overflow-hidden transition-all duration-300"
+                className="bg-card rounded-xl shadow-sm border border-border overflow-hidden transition-all duration-300"
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}

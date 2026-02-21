@@ -38,7 +38,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="py-20 bg-primary dark:bg-gray-950 text-white transition-colors duration-300"
+      className="py-20 bg-primary dark:bg-background text-white transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -70,7 +70,7 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className="bg-white dark:bg-gray-900 p-8 rounded-xl text-gray-900 dark:text-gray-100 shadow-2xl relative overflow-hidden border dark:border-gray-800 transition-colors duration-300">
+          <div className="bg-card p-8 rounded-xl text-foreground shadow-2xl relative overflow-hidden border border-border transition-colors duration-300">
             <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-light/30 dark:bg-secondary/5 rounded-bl-full -mr-10 -mt-10 transition-colors duration-300" />
             <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
               <div>
@@ -80,7 +80,7 @@ const Contact = () => {
                 <input
                   type="text"
                   required
-                  className="w-full px-4 py-3 border border-secondary/20 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none transition dark:placeholder-gray-500"
+                  className="w-full px-4 py-3 border border-border bg-background rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none transition"
                   placeholder="John Doe"
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
@@ -99,7 +99,7 @@ const Contact = () => {
                     type="tel"
                     required
                     value={formData.phone}
-                    className="w-full pl-12 pr-4 py-3 border border-secondary/20 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none transition dark:placeholder-gray-500"
+                    className="w-full pl-12 pr-4 py-3 border border-border bg-background rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none transition"
                     placeholder="+91 00000 00000"
                     onChange={(e) =>
                       setFormData({ ...formData, phone: e.target.value })
@@ -112,7 +112,7 @@ const Contact = () => {
                   Special Message (Optional)
                 </label>
                 <textarea
-                  className="w-full px-4 py-3 border border-secondary/20 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none h-24 resize-none transition dark:placeholder-gray-500"
+                  className="w-full px-4 py-3 border border-border bg-background rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none h-24 resize-none transition"
                   placeholder="Any specific requests?"
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })

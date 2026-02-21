@@ -28,7 +28,7 @@ export default async function Home() {
   const reviews = await getReviews();
 
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-950 transition-colors duration-300">
+    <main className="min-h-screen bg-background transition-colors duration-300">
       <Navbar />
       <Hero />
       <Facilities />
@@ -39,7 +39,7 @@ export default async function Home() {
       {/* Location Section */}
       <section
         id="location"
-        className="py-20 bg-white dark:bg-gray-950 transition-colors duration-300"
+        className="py-20 bg-background transition-colors duration-300"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -53,7 +53,7 @@ export default async function Home() {
             </p>
           </div>
           <div className="grid lg:grid-cols-3 gap-12 items-center">
-            <div className="lg:col-span-2 bg-secondary-light/30 rounded-3xl overflow-hidden h-[400px] border border-secondary/20 shadow-inner relative">
+            <div className="lg:col-span-2 bg-secondary-light/30 dark:bg-gray-900 rounded-3xl overflow-hidden h-[400px] border border-secondary/20 dark:border-gray-800 shadow-inner relative transition-colors duration-300">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11568.1102268481!2d-79.4002697!3d43.6628917!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b34927b2e353b%3A0xc3c94592da156bf9!2sUniversity%20of%20Toronto!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca"
                 width="100%"
@@ -65,14 +65,14 @@ export default async function Home() {
               ></iframe>
             </div>
             <div className="space-y-6">
-              <div className="bg-secondary-light/50 p-6 rounded-2xl border-l-4 border-primary">
-                <h3 className="font-bold text-lg mb-2 text-primary-dark">
+              <div className="bg-secondary-light/50 dark:bg-gray-900 p-6 rounded-2xl border-l-4 border-primary transition-colors duration-300">
+                <h3 className="font-bold text-lg mb-2 text-primary-dark dark:text-secondary">
                   Nearby Landmarks
                 </h3>
                 <ul className="space-y-3 text-primary/80 font-medium">
-                  <li>• Exam Center A (5 mins away)</li>
-                  <li>• Recruitment Office B (10 mins away)</li>
-                  <li>• Subway Station (2 mins walk)</li>
+                  <li>• SSB Station (200 m away)</li>
+                  <li>• Gufa Mandir (3 mins away)</li>
+                  <li>• Kidzee Pre School (2 mins walk)</li>
                 </ul>
               </div>
               <p className="text-gray-600 dark:text-gray-400 italic font-medium transition-colors duration-300">

@@ -35,7 +35,6 @@ const Rooms = () => {
       gallery: [
         { src: "/homePageImges/beds.jpg", alt: "Dormitory Beds" },
         { src: "/homePageImges/beds2.jpg", alt: "Dormitory View" },
-        // { src: "/homePageImges/roomsgate.jpg", alt: "Entrance" },
       ],
     },
     {
@@ -61,7 +60,6 @@ const Rooms = () => {
       gallery: [
         { src: "/homePageImges/roomsgate.jpg", alt: "Cabin View" },
         { src: "/homePageImges/bathroom.jpg", alt: "Premium Bathroom" },
-        // { src: "/homePageImges/waterro.jpg", alt: "Refreshments" },
       ],
     },
   ];
@@ -69,7 +67,7 @@ const Rooms = () => {
   return (
     <section
       id="rooms"
-      className="py-10 bg-gray-50/50 dark:bg-gray-950 relative overflow-hidden transition-colors duration-300"
+      className="py-10 bg-background relative overflow-hidden transition-colors duration-300"
     >
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-secondary/20 to-transparent" />
 
@@ -94,7 +92,7 @@ const Rooms = () => {
               <div
                 className={`space-y-6 ${index % 2 === 1 ? "lg:order-2" : "lg:order-1"}`}
               >
-                <div className="relative rounded-xl md:rounded-xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800 aspect-video bg-black group shrink-0 transition-all duration-300">
+                <div className="relative rounded-xl md:rounded-xl overflow-hidden shadow-2xl border-4 border-border aspect-video bg-black group shrink-0 transition-all duration-300">
                   {room.media.type === "video" ? (
                     <video
                       src={room.media.src}
@@ -121,7 +119,7 @@ const Rooms = () => {
                   {room.gallery.map((img, i) => (
                     <div
                       key={i}
-                      className={`relative rounded-xl md:rounded-xl overflow-hidden shadow-lg border-2 border-white dark:border-gray-800 aspect-square transition-all duration-300 ${i === 2 ? "col-span-2 aspect-[16/7]" : ""}`}
+                      className={`relative rounded-xl md:rounded-xl overflow-hidden shadow-lg border-2 border-border aspect-square transition-all duration-300 ${i === 2 ? "col-span-2 aspect-[16/7]" : ""}`}
                     >
                       <Image
                         src={img.src}
@@ -133,7 +131,7 @@ const Rooms = () => {
                   ))}
                 </div>
 
-                <div className="bg-white dark:bg-gray-900 p-6 md:p-8 rounded-xl border border-secondary/10 dark:border-gray-800 shadow-sm flex items-center justify-between transition-colors duration-300">
+                <div className="bg-card p-6 md:p-8 rounded-xl border border-border shadow-sm flex items-center justify-between transition-colors duration-300">
                   <div className="flex items-center gap-4">
                     <div className="w-12 h-12 bg-secondary-light/30 dark:bg-secondary/10 rounded-2xl flex items-center justify-center text-primary dark:text-secondary shrink-0 transition-colors duration-300">
                       {room.id === "dorm" ? (
@@ -166,7 +164,7 @@ const Rooms = () => {
               <div
                 className={`${index % 2 === 1 ? "lg:order-1" : "lg:order-2"}`}
               >
-                <div className="bg-white dark:bg-gray-900 p-8 md:p-12 rounded-xl md:rounded-xl shadow-xl border border-secondary/5 dark:border-gray-800 relative transition-colors duration-300">
+                <div className="bg-card p-8 md:p-12 rounded-xl md:rounded-xl shadow-xl border border-border relative transition-colors duration-300">
                   <div
                     className={`absolute -top-4 ${index % 2 === 1 ? "lg:-left-4" : "lg:-right-4"} bg-secondary text-primary-dark px-5 py-2.5 rounded-xl font-black text-xs uppercase tracking-widest shadow-xl z-20`}
                   >
@@ -193,7 +191,7 @@ const Rooms = () => {
                     ))}
                   </div>
 
-                  <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 border-t border-secondary/10 dark:border-gray-800">
+                  <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-10 border-t border-border">
                     <div className="text-center sm:text-left">
                       <div className="flex items-baseline justify-center sm:justify-start gap-1">
                         <span className="text-4xl font-black text-primary-dark dark:text-secondary">

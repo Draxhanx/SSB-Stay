@@ -11,9 +11,9 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 dark:bg-black pt-20 pb-10 text-gray-400 border-t dark:border-gray-800 transition-colors duration-300">
+    <footer className="bg-gray-900 dark:bg-black pt-20 pb-10 text-gray-400 border-t border-border transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-gray-800 pb-16 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 border-b border-border pb-16 mb-12">
           <div className="space-y-6">
             <Link href="/" className="flex items-center gap-3 group">
               <div className="relative w-12 h-12">
@@ -21,7 +21,7 @@ const Footer = () => {
                   src="/logo.png"
                   alt="Shaurya SSB Stay Logo"
                   fill
-                  className="object-contain brightness-0 invert transition-transform duration-300 group-hover:scale-110"
+                  className="object-contain transition-transform duration-300 group-hover:scale-110"
                 />
               </div>
               <span className="text-xl font-heading font-bold text-white tracking-tight">
@@ -161,7 +161,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-gray-800/50">
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-border">
           <p className="text-sm font-medium transition-colors duration-300">
             © {new Date().getFullYear()}{" "}
             <span className="text-white">Shaurya SSB Stay</span>. Designed with
