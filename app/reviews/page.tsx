@@ -24,7 +24,7 @@ export default function ReviewsPage() {
         const res = await fetch("/api/reviews");
         if (res.ok) {
           const data = await res.json();
-          setReviews(data);
+          setReviews(data.data || []);
         }
       } catch (error) {
         console.error("Failed to fetch reviews:", error);
