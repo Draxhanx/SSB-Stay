@@ -75,14 +75,14 @@ const Contact = () => {
             <div className="space-y-6">
               <div className="flex flex-wrap gap-4">
                 <a
-                  href="https://wa.me/917300096956"
+                  href="https://wa.me/916261445072"
                   target="_blank"
                   className="flex items-center gap-2 bg-green-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-green-600 transition shadow-lg shadow-black/10"
                 >
                   WhatsApp Us
                 </a>
                 <a
-                  href="tel:+917300096956"
+                  href="tel:+916261445072"
                   className="flex items-center gap-2 bg-secondary text-primary-dark px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-primary transition shadow-lg shadow-black/10"
                 >
                   <Phone className="h-5 w-5" /> Call Now
