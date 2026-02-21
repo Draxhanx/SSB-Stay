@@ -2,9 +2,12 @@ import mongoose from "mongoose";
 const MONGODB_URI = process.env.MONGODB_URI || "";
 
 if (!MONGODB_URI) {
-  console.warn(
-    "Warning: MONGODB_URI is not defined. Database operations will fail.",
-  );
+  console.warn("MONGODB_URI is missing from environment variables.");
+} else {
+  const uriPrefix = MONGODB_URI.startsWith("mongodb+srv")
+    ? "mongodb+srv://***"
+    : MONGODB_URI.split("@")[1] || "local/unknown";
+  console.log(`Attempting to connect to MongoDB: ${uriPrefix}`);
 }
 
 declare global {
@@ -36,8 +39,18 @@ async function connectDB() {
         return mongooseInstance.connection;
       });
   }
-  cached.conn = await cached.promise;
-  return cached.conn;
+  try {
+    cached.conn = await cached.promise;
+    return cached.conn;
+  } catch (error: any) {
+    cached.promise = null; // Reset promise if connection fails
+    console.error("MongoDB Connection Failed:", {
+      message: error.message,
+      code: error.code,
+      name: error.name,
+    });
+    throw error;
+  }
 }
 
 export default connectDB;
