@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   LogOut,
   LayoutDashboard,
@@ -62,10 +63,7 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="flex min-h-screen bg-gray-50 dark:bg-background transition-colors duration-300">
       {/* Mobile Top Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 border-b border-secondary/10 dark:border-white/5 z-50 flex items-center justify-between px-6 py-4 shadow-sm transition-colors duration-300">
-        <h2 className="text-xl font-heading font-semibold text-primary dark:text-white">
-          Admin Panel
-        </h2>
+      <div className="lg:hidden fixed top-0 left-0 right-0 bg-white dark:bg-gray-900 border-b border-secondary/10 dark:border-white/5 z-50 flex items-center gap-4 px-6 py-4 shadow-sm transition-colors duration-300">
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="p-2 text-primary dark:text-secondary bg-primary/5 dark:bg-white/5 rounded-xl transition-all active:scale-95"
@@ -73,6 +71,18 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         >
           {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
+        <div className="flex items-center gap-2">
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            width={32}
+            height={32}
+            className="w-8 h-8 object-contain"
+          />
+          <h2 className="text-lg font-heading font-bold text-primary dark:text-white whitespace-nowrap">
+            SHAURYA SSB STAY
+          </h2>
+        </div>
       </div>
 
       {/* Sidebar Overlay (Mobile) */}
@@ -90,9 +100,18 @@ const AdminLayout = ({ children }: { children: React.ReactNode }) => {
         } lg:left-0 transition-colors duration-300`}
       >
         <div className="p-6 border-b border-light-orange/10 dark:border-white/5 hidden lg:block">
-          <h2 className="text-2xl font-heading font-semibold text-primary dark:text-white">
-            Admin Panel
-          </h2>
+          <div className="flex flex-col items-center gap-3">
+            <Image
+              src="/logo.png"
+              alt="SHAURYA SSB STAY"
+              width={60}
+              height={60}
+              className="w-15 h-15 object-contain"
+            />
+            <h2 className="text-xl font-heading font-bold text-primary dark:text-white text-center">
+              SHAURYA SSB STAY
+            </h2>
+          </div>
         </div>
 
         <nav className="flex-1 mt-20 lg:mt-8 px-4 space-y-3 overflow-y-auto">

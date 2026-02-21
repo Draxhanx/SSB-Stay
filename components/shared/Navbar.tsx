@@ -67,12 +67,12 @@ const Navbar = () => {
       }`}
     >
       {/* Scroll Progress Bar */}
-      <div className="absolute bottom-0 left-0 h-[2px] bg-primary/30 w-full overflow-hidden">
-        {/* <div
+      {/* <div className="absolute bottom-0 left-0 h-[2px] bg-primary/30 w-full overflow-hidden"> */}
+      {/* <div
           className="h-full bg-primary transition-all duration-150 ease-out"
           style={{ width: `${scrollProgress}%` }}
         /> */}
-      </div>
+      {/* </div> */}
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">

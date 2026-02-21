@@ -6,19 +6,19 @@ import FAQ from "@/components/shared/FAQ";
 import Contact from "@/components/shared/Contact";
 import Footer from "@/components/shared/Footer";
 import ReviewsListing from "@/components/shared/ReviewsListing";
+import connectDB from "@/lib/mongodb";
+import Review from "@/models/Review";
 
 async function getReviews() {
   try {
-    const res = await fetch(
-      `${process.env.NEXTAUTH_URL || "http://localhost:3000"}/api/reviews`,
-      {
-        cache: "no-store",
-        next: { revalidate: 0 },
-      },
-    );
-    if (!res.ok) return [];
-    const json = await res.json();
-    return json.data || [];
+    await connectDB();
+    const reviews = await Review.find({ isApproved: true })
+      .sort({ createdAt: -1 })
+      .limit(10)
+      .lean();
+
+    // Convert Mongo _id to string for serialization
+    return JSON.parse(JSON.stringify(reviews)) || [];
   } catch (error) {
     console.error("Error fetching reviews:", error);
     return [];

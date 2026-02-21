@@ -34,14 +34,14 @@ const Footer = () => {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="#"
+                href="https://www.instagram.com/shauryastay.ssb?igsh=MWI1OWN5MnQyOHZwaw=="
                 className="w-10 h-10 rounded-xl bg-gray-800 dark:bg-gray-900 flex items-center justify-center text-white hover:bg-secondary hover:text-primary-dark transition-all duration-300"
               >
                 <Instagram size={18} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-xl bg-gray-800 dark:bg-gray-900 flex items-center justify-center text-white hover:bg-secondary hover:text-primary-dark transition-all duration-300"
+                className="w-10 h-10 opacity-50 pointer-disable rounded-xl bg-gray-800 dark:bg-gray-900 flex items-center justify-center text-white hover:bg-secondary hover:text-primary-dark transition-all duration-300"
               >
                 <Facebook size={18} />
               </a>
@@ -151,14 +151,14 @@ const Footer = () => {
                   Privacy Policy
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link
                   href="/admin/login"
                   className="text-xs uppercase tracking-widest text-gray-500 hover:text-white transition-colors pt-4 block"
                 >
                   Admin Secure Access
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </div>
@@ -166,8 +166,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-border">
           <p className="text-sm font-medium transition-colors duration-300">
             © {new Date().getFullYear()}{" "}
-            <span className="text-white">Shaurya SSB Stay</span>. Designed with
-            ❤️ for aspirants.
+            <span className="text-white">Shaurya SSB Stay</span>
           </p>
           <div className="flex gap-8 text-xs uppercase tracking-widest font-semibold">
             <span className="text-gray-600 dark:text-gray-700 transition-colors duration-300">
