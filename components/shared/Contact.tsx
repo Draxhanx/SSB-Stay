@@ -1,16 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Send, Phone, MessageSquare } from "lucide-react";
+import toast from "react-hot-toast";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
-    phone: "+91 ",
+    phone: "",
     roomType: "",
     message: "",
   });
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const handleSelectRoom = (e: any) => {
+      setFormData((prev) => ({ ...prev, roomType: e.detail.roomType }));
+      const element = document.getElementById("booking-form");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    window.addEventListener("selectRoom" as any, handleSelectRoom);
+    return () =>
+      window.removeEventListener("selectRoom" as any, handleSelectRoom);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,18 +33,23 @@ const Contact = () => {
       const res = await fetch("/api/enquiries", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          phone: `+91 ${formData.phone}`,
+        }),
       });
 
       if (res.ok) {
-        alert("Enquiry sent! We will contact you shortly.");
-        setFormData({ name: "", phone: "+91 ", roomType: "", message: "" });
+        toast.success("Enquiry sent! We will contact you shortly.");
+        setFormData({ name: "", phone: "", roomType: "", message: "" });
         (e.target as HTMLFormElement).reset();
       } else {
         throw new Error("Failed to send enquiry");
       }
     } catch (error) {
-      alert("Something went wrong. Please try again or call us directly.");
+      toast.error(
+        "Something went wrong. Please try again or call us directly.",
+      );
     } finally {
       setLoading(false);
     }
@@ -71,7 +90,10 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className="bg-card p-8 rounded-xl text-foreground shadow-2xl relative overflow-hidden border border-border transition-colors duration-300">
+          <div
+            id="booking-form"
+            className="bg-card p-8 rounded-xl text-foreground shadow-2xl relative overflow-hidden border border-border transition-colors duration-300"
+          >
             <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-light/30 dark:bg-secondary/5 rounded-bl-full -mr-10 -mt-10 transition-colors duration-300" />
             <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
               <div>
@@ -81,6 +103,7 @@ const Contact = () => {
                 <input
                   type="text"
                   required
+                  value={formData.name}
                   className="w-full px-4 py-3 border border-border bg-background rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none transition"
                   placeholder="John Doe"
                   onChange={(e) =>
@@ -93,18 +116,22 @@ const Contact = () => {
                   Phone Number
                 </label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none">
-                    <span className="text-lg">🇮🇳</span>
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none text-gray-500 font-semibold border-r border-border pr-2">
+                    <span>🇮🇳</span>
+                    <span>+91</span>
                   </span>
                   <input
                     type="tel"
                     required
                     value={formData.phone}
-                    className="w-full pl-12 pr-4 py-3 border border-border bg-background rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none transition"
-                    placeholder="+91 00000 00000"
-                    onChange={(e) =>
-                      setFormData({ ...formData, phone: e.target.value })
-                    }
+                    className="w-full pl-24 pr-4 py-3 border border-border bg-background rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none transition"
+                    placeholder="00000 00000"
+                    onChange={(e) => {
+                      const value = e.target.value.replace(/\D/g, ""); // Remove non-numeric
+                      if (value.length <= 10) {
+                        setFormData({ ...formData, phone: value });
+                      }
+                    }}
                   />
                 </div>
               </div>
@@ -114,6 +141,7 @@ const Contact = () => {
                 </label>
                 <select
                   className="w-full px-4 py-3 border border-border bg-background rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none transition"
+                  value={formData.roomType}
                   onChange={(e) =>
                     setFormData({ ...formData, roomType: e.target.value })
                   }
@@ -133,6 +161,7 @@ const Contact = () => {
                 <textarea
                   className="w-full px-4 py-3 border border-border bg-background rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none h-24 resize-none transition"
                   placeholder="Any specific requests?"
+                  value={formData.message}
                   onChange={(e) =>
                     setFormData({ ...formData, message: e.target.value })
                   }

@@ -22,11 +22,11 @@ const JsonLd = () => {
     name: "Shaurya ssb stay",
     description:
       "Affordable one-night stay for students and interview candidates.",
-    priceRange: "₹",
+    priceRange: "₹349",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Your City",
-      addressRegion: "Your State",
+      addressLocality: "Bhopal",
+      addressRegion: "Madhya Pradesh",
       addressCountry: "IN",
     },
     amenityFeature: [

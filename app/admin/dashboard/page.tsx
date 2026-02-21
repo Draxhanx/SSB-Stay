@@ -1,117 +1,238 @@
-import { getServerSession } from "next-auth/next";
-import { redirect } from "next/navigation";
+"use client";
+
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Bed, Users, MessageSquare, IndianRupee } from "lucide-react";
+import {
+  Users,
+  MessageSquare,
+  IndianRupee,
+  TrendingUp,
+  Calendar,
+  ArrowRight,
+  Loader2,
+} from "lucide-react";
+import toast from "react-hot-toast";
 
-export default async function AdminDashboard() {
-  const session = await getServerSession();
+interface Stat {
+  name: string;
+  value: string | number;
+  icon: React.ReactNode;
+  color: string;
+  description: string;
+}
 
-  if (!session) {
-    redirect("/admin/login");
+interface Enquiry {
+  _id: string;
+  name: string;
+  roomType: string;
+  phone: string;
+  status: string;
+  createdAt: string;
+}
+
+export default function AdminDashboard() {
+  const [stats, setStats] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchStats();
+  }, []);
+
+  const fetchStats = async () => {
+    try {
+      const res = await fetch("/api/admin/stats");
+      const data = await res.json();
+      if (res.ok) {
+        setStats(data);
+      } else {
+        toast.error("Failed to load dashboard statistics");
+      }
+    } catch (error) {
+      toast.error("An error occurred while fetching stats");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <Loader2 className="w-10 h-10 text-primary animate-spin" />
+          <p className="text-gray-500 font-semibold animate-pulse">
+            Loading Dashboard...
+          </p>
+        </div>
+      </div>
+    );
   }
 
-  const stats = [
-    {
-      name: "Total Rooms",
-      value: "10",
-      icon: <Bed className="h-6 w-6" />,
-      color: "bg-primary",
-    },
+  const statCards: Stat[] = [
     {
       name: "Total Enquiries",
-      value: "24",
+      value: stats?.totalEnquiries || 0,
       icon: <MessageSquare className="h-6 w-6" />,
-      color: "bg-teal-600",
+      color: "bg-primary shadow-primary/20",
+      description: "Lifetime enquiries received",
     },
     {
-      name: "Bookings Today",
-      value: "5",
-      icon: <Users className="h-6 w-6" />,
-      color: "bg-secondary",
+      name: "Enquiries Today",
+      value: stats?.todayEnquiries || 0,
+      icon: <Calendar className="h-6 w-6" />,
+      color: "bg-secondary shadow-secondary/20",
+      description: "New enquiries in last 24h",
     },
     {
-      name: "Revenue (Est)",
-      value: "₹2500",
+      name: "Estimated Revenue",
+      value: `₹${stats?.totalRevenue || 0}`,
       icon: <IndianRupee className="h-6 w-6" />,
-      color: "bg-primary-dark",
+      color: "bg-primary-dark shadow-primary-dark/20",
+      description: "Based on confirmed bookings",
+    },
+    {
+      name: "Conversion Rate",
+      value:
+        stats?.totalEnquiries > 0
+          ? `${((stats?.totalRevenue / 349 / stats?.totalEnquiries) * 100).toFixed(1)}%`
+          : "0%",
+      icon: <TrendingUp className="h-6 w-6" />,
+      color: "bg-teal-600 shadow-teal-600/20",
+      description: "Enquiries to confirmed",
     },
   ];
 
   return (
-    <div className="p-8 bg-gray-50/50 min-h-screen">
-      <div className="flex justify-between items-center mb-10">
-        <h1 className="text-3xl font-heading font-bold text-primary-dark">
-          Admin Dashboard
-        </h1>
-        <div className="flex gap-4">
-          <Link
-            href="/admin/rooms"
-            className="bg-primary text-white px-6 py-2 rounded-lg font-bold hover:bg-primary-dark transition shadow-md shadow-teal-900/10"
-          >
-            Manage Rooms
-          </Link>
-          <Link
-            href="/admin/bookings"
-            className="bg-white text-primary px-6 py-2 rounded-lg font-bold border border-primary/20 hover:bg-secondary-light transition"
-          >
-            View Bookings
-          </Link>
+    <div className="p-4 sm:p-8 bg-gray-50/50 dark:bg-background/50 min-h-screen transition-colors duration-300">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-8 lg:mb-12">
+        <div>
+          <h1 className="text-2xl sm:text-3xl font-heading font-semibold text-primary-dark dark:text-white mb-2">
+            Admin Dashboard
+          </h1>
+          <p className="text-gray-500 dark:text-gray-400 font-medium italic text-sm sm:text-base">
+            Welcome back! Here's what's happening today.
+          </p>
         </div>
+        <Link
+          href="/admin/bookings"
+          className="group w-full lg:w-auto flex items-center justify-center gap-2 bg-primary text-white px-8 py-3.5 rounded-xl font-semibold hover:bg-primary-dark transition-all shadow-lg shadow-teal-900/10 active:scale-95"
+        >
+          View All Bookings{" "}
+          <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+        </Link>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-        {stats.map((stat, index) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 mb-8 lg:mb-12">
+        {statCards.map((stat, index) => (
           <div
             key={index}
-            className="bg-white p-6 rounded-2xl shadow-sm border border-secondary/10 hover:shadow-md transition"
+            className="bg-white dark:bg-gray-900/50 p-6 sm:p-7 rounded-xl shadow-xl shadow-teal-900/5 border border-secondary/10 dark:border-white/5 hover:border-primary/30 transition-all group"
           >
             <div
-              className={`w-12 h-12 ${stat.color} text-white rounded-xl flex items-center justify-center mb-4 shadow-lg shadow-black/5`}
+              className={`w-12 h-12 sm:w-14 sm:h-14 ${stat.color} text-white rounded-xl flex items-center justify-center mb-4 sm:mb-5 shadow-lg group-hover:scale-110 transition-transform duration-300`}
             >
               {stat.icon}
             </div>
-            <p className="text-gray-500 text-sm font-bold uppercase tracking-wider">
+            <p className="text-gray-400 dark:text-gray-500 text-[10px] sm:text-xs font-bold uppercase tracking-[0.15em] mb-1">
               {stat.name}
             </p>
-            <p className="text-2xl font-black mt-1 text-primary-dark">
+            <p className="text-2xl sm:text-3xl font-semibold text-primary-dark dark:text-white">
               {stat.value}
+            </p>
+            <p className="text-gray-400 dark:text-gray-500 text-[10px] sm:text-xs mt-3 font-medium italic">
+              {stat.description}
             </p>
           </div>
         ))}
       </div>
 
-      <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-8">
-        <h2 className="text-xl font-bold mb-6">Recent Enquiries</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full text-left">
-            <thead>
-              <tr className="border-b text-gray-400 text-sm uppercase">
-                <th className="pb-4 font-medium">Name</th>
-                <th className="pb-4 font-medium">Room Type</th>
-                <th className="pb-4 font-medium">Phone</th>
-                <th className="pb-4 font-medium">Status</th>
-                <th className="pb-4 font-medium text-right">Action</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y">
-              <tr className="hover:bg-gray-50">
-                <td className="py-4 font-medium">Rahul Sharma</td>
-                <td className="py-4 text-gray-600">Shared Dorm</td>
-                <td className="py-4 text-gray-600">+91 98765 43210</td>
-                <td className="py-4">
-                  <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full text-xs font-bold">
-                    Pending
-                  </span>
-                </td>
-                <td className="py-4 text-right">
-                  <button className="text-blue-600 font-medium text-sm">
-                    View Details
-                  </button>
-                </td>
-              </tr>
-              {/* More rows... */}
-            </tbody>
-          </table>
+      <div className="bg-white dark:bg-gray-900/50 rounded-xl shadow-xl shadow-teal-900/5 border border-secondary/10 dark:border-white/5 p-4 sm:p-8 overflow-hidden">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
+          <h2 className="text-lg sm:text-xl font-semibold text-primary-dark dark:text-white flex items-center gap-2">
+            <TrendingUp className="text-primary" /> Recent Enquiries
+          </h2>
+          <Link
+            href="/admin/bookings"
+            className="text-primary hover:text-primary-dark text-sm font-semibold border-b-2 border-primary/20 hover:border-primary transition-all pb-0.5"
+          >
+            View All
+          </Link>
+        </div>
+
+        <div className="overflow-x-auto -mx-4 sm:-mx-0">
+          <div className="inline-block min-w-full align-middle p-4 sm:p-0">
+            <table className="w-full text-left">
+              <thead>
+                <tr className="border-b dark:border-white/5 text-gray-400 dark:text-gray-500 text-[9px] sm:text-[10px] font-bold uppercase tracking-widest">
+                  <th className="pb-5 pl-2 font-bold min-w-[150px]">Guest</th>
+                  <th className="pb-5 font-bold min-w-[150px]">
+                    Room Preferred
+                  </th>
+                  <th className="pb-5 font-bold min-w-[120px]">Contact</th>
+                  <th className="pb-5 font-bold min-w-[100px]">Status</th>
+                  <th className="pb-5 font-bold text-right pr-2">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y dark:divide-white/5">
+                {stats?.recentEnquiries?.map((enquiry: Enquiry) => (
+                  <tr
+                    key={enquiry._id}
+                    className="hover:bg-gray-50/50 dark:hover:bg-white/5 transition-colors group"
+                  >
+                    <td className="py-5 pl-2">
+                      <div className="flex flex-col">
+                        <span className="font-semibold text-sm sm:text-base text-primary-dark dark:text-gray-200 truncate max-w-[140px]">
+                          {enquiry.name}
+                        </span>
+                        <span className="text-[10px] text-gray-400 font-medium">
+                          {new Date(enquiry.createdAt).toLocaleDateString()}
+                        </span>
+                      </div>
+                    </td>
+                    <td className="py-5">
+                      <span className="px-3 py-1 bg-secondary-light/30 dark:bg-white/5 text-primary text-[10px] sm:text-xs font-semibold rounded-xl whitespace-nowrap">
+                        {enquiry.roomType || "Unspecified"}
+                      </span>
+                    </td>
+                    <td className="py-5 text-gray-600 dark:text-gray-400 font-medium text-xs sm:text-sm whitespace-nowrap">
+                      {enquiry.phone}
+                    </td>
+                    <td className="py-5">
+                      <span
+                        className={`px-3 py-1 rounded-xl text-[9px] sm:text-[10px] font-bold uppercase tracking-widest whitespace-nowrap ${
+                          enquiry.status === "Confirmed"
+                            ? "bg-green-100 dark:bg-green-500/10 text-green-700 dark:text-green-400"
+                            : enquiry.status === "Cancelled"
+                              ? "bg-red-100 dark:bg-red-500/10 text-red-700 dark:text-red-400"
+                              : "bg-yellow-100 dark:bg-yellow-500/10 text-yellow-700 dark:text-yellow-400"
+                        }`}
+                      >
+                        {enquiry.status}
+                      </span>
+                    </td>
+                    <td className="py-5 text-right pr-2">
+                      <Link
+                        href="/admin/bookings"
+                        className="text-primary hover:text-white hover:bg-primary px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl transition-all text-[10px] sm:text-xs font-bold whitespace-nowrap border border-primary/20"
+                      >
+                        DETAILS
+                      </Link>
+                    </td>
+                  </tr>
+                ))}
+                {(!stats?.recentEnquiries ||
+                  stats.recentEnquiries.length === 0) && (
+                  <tr>
+                    <td
+                      colSpan={5}
+                      className="py-12 text-center text-gray-400 font-medium italic"
+                    >
+                      No recent enquiries found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>

@@ -25,7 +25,7 @@ export default function AboutPage() {
           {/* Mission & Vision */}
           <div className="grid md:grid-cols-3 gap-8 mb-20">
             <div className="bg-secondary-light/20 dark:bg-gray-900 p-8 rounded-xl border border-secondary/10 dark:border-gray-800 transition-all duration-300">
-              <div className="w-14 h-14 bg-primary/10 dark:bg-secondary/10 rounded-2xl flex items-center justify-center text-primary dark:text-secondary mb-6">
+              <div className="w-14 h-14 bg-primary/10 dark:bg-secondary/10 rounded-xl flex items-center justify-center text-primary dark:text-secondary mb-6">
                 <Target className="h-8 w-8" />
               </div>
               <h3 className="text-2xl font-semibold text-black dark:text-white mb-4">
@@ -38,7 +38,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="bg-secondary-light/20 dark:bg-gray-900 p-8 rounded-xl border border-secondary/10 dark:border-gray-800 transition-all duration-300">
-              <div className="w-14 h-14 bg-primary/10 dark:bg-secondary/10 rounded-2xl flex items-center justify-center text-primary dark:text-secondary mb-6">
+              <div className="w-14 h-14 bg-primary/10 dark:bg-secondary/10 rounded-xl flex items-center justify-center text-primary dark:text-secondary mb-6">
                 <Users className="h-8 w-8" />
               </div>
               <h3 className="text-2xl font-semibold text-black dark:text-white mb-4">
@@ -51,7 +51,7 @@ export default function AboutPage() {
               </p>
             </div>
             <div className="bg-secondary-light/20 dark:bg-gray-900 p-8 rounded-xl border border-secondary/10 dark:border-gray-800 transition-all duration-300">
-              <div className="w-14 h-14 bg-primary/10 dark:bg-secondary/10 rounded-2xl flex items-center justify-center text-primary dark:text-secondary mb-6">
+              <div className="w-14 h-14 bg-primary/10 dark:bg-secondary/10 rounded-xl flex items-center justify-center text-primary dark:text-secondary mb-6">
                 <Shield className="h-8 w-8" />
               </div>
               <h3 className="text-2xl font-semibold text-black dark:text-white mb-4">

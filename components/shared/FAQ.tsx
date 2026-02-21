@@ -52,7 +52,7 @@ const FAQ = () => {
                   className="w-full text-left p-6 flex justify-between items-center group transition-colors hover:bg-gray-50/50 dark:hover:bg-gray-800/50"
                 >
                   <h3
-                    className={`text-lg font-bold transition-colors ${
+                    className={`text-lg font-semibold transition-colors ${
                       isOpen
                         ? "text-primary dark:text-secondary"
                         : "text-primary-dark dark:text-gray-200"

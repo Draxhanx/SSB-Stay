@@ -24,7 +24,7 @@ const Footer = () => {
                   className="object-contain transition-transform duration-300 group-hover:scale-110"
                 />
               </div>
-              <span className="text-xl font-heading font-bold text-white tracking-tight">
+              <span className="text-xl font-heading font-semibold text-white tracking-tight">
                 Shaurya <span className="text-secondary">SSB Stay</span>
               </span>
             </Link>
@@ -35,19 +35,19 @@ const Footer = () => {
             <div className="flex items-center gap-4">
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-gray-800 dark:bg-gray-900 flex items-center justify-center text-white hover:bg-secondary hover:text-primary-dark transition-all duration-300"
+                className="w-10 h-10 rounded-xl bg-gray-800 dark:bg-gray-900 flex items-center justify-center text-white hover:bg-secondary hover:text-primary-dark transition-all duration-300"
               >
                 <Instagram size={18} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-gray-800 dark:bg-gray-900 flex items-center justify-center text-white hover:bg-secondary hover:text-primary-dark transition-all duration-300"
+                className="w-10 h-10 rounded-xl bg-gray-800 dark:bg-gray-900 flex items-center justify-center text-white hover:bg-secondary hover:text-primary-dark transition-all duration-300"
               >
                 <Facebook size={18} />
               </a>
               <a
                 href="#"
-                className="w-10 h-10 rounded-full bg-gray-800 dark:bg-gray-900 flex items-center justify-center text-white hover:bg-secondary hover:text-primary-dark transition-all duration-300"
+                className="w-10 h-10 rounded-xl bg-gray-800 dark:bg-gray-900 flex items-center justify-center text-white hover:bg-secondary hover:text-primary-dark transition-all duration-300"
               >
                 <Twitter size={18} />
               </a>
@@ -105,24 +105,26 @@ const Footer = () => {
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <MapPin size={20} className="text-secondary shrink-0 mt-1" />
-                <span>Near Major SSB Centers & Exam Hubs</span>
+                <span>
+                  11, Geeta Bhawan, Ramanand Nagar, Lalghati, Bhopal 462030
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={20} className="text-secondary shrink-0" />
                 <a
-                  href="tel:+917300096956"
+                  href="tel:+916261445072"
                   className="hover:text-white transition-colors duration-300"
                 >
-                  +91 73000 96956
+                  +91 6261 445072
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={20} className="text-secondary shrink-0" />
                 <a
-                  href="mailto:contact@shauryassbstay.com"
+                  href="mailto:shauryassbstay@gmail.com"
                   className="hover:text-white transition-colors duration-300"
                 >
-                  contact@shauryassbstay.com
+                  shauryassbstay@gmail.com
                 </a>
               </li>
             </ul>
@@ -167,7 +169,7 @@ const Footer = () => {
             <span className="text-white">Shaurya SSB Stay</span>. Designed with
             ❤️ for aspirants.
           </p>
-          <div className="flex gap-8 text-xs uppercase tracking-widest font-bold">
+          <div className="flex gap-8 text-xs uppercase tracking-widest font-semibold">
             <span className="text-gray-600 dark:text-gray-700 transition-colors duration-300">
               Secure Stay
             </span>

@@ -25,7 +25,7 @@ const Hero = () => {
 
           {/* 2. Image Section - Below Text on mobile, Side by Side on Desktop */}
           <div className="relative mt-8 lg:mt-0 order-2 lg:row-span-2">
-            <div className="w-full h-[320px] sm:h-[450px] lg:h-[590px] bg-secondary-light dark:bg-gray-900 rounded-2xl sm:rounded-3xl overflow-hidden relative border-2 border-secondary/20 shadow-2xl transition-colors duration-300">
+            <div className="w-full h-[320px] sm:h-[450px] lg:h-[590px] bg-secondary-light dark:bg-gray-900 rounded-xl overflow-hidden relative border-2 border-secondary/20 shadow-2xl transition-colors duration-300">
               <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent dark:from-primary/20 z-10" />
               <div className="flex items-center justify-center h-full">
                 <Image
@@ -38,11 +38,11 @@ const Hero = () => {
                 />
               </div>
             </div>
-            <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-white dark:bg-gray-900 p-4 sm:p-6 rounded-2xl shadow-xl border-l-4 border-secondary transition-colors duration-300 z-20">
-              <p className="text-xl sm:text-2xl font-black text-primary dark:text-secondary">
+            <div className="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-white dark:bg-gray-900 p-4 sm:p-6 rounded-xl shadow-xl border-l-4 border-secondary transition-colors duration-300 z-20">
+              <p className="text-xl sm:text-2xl font-semibold text-primary dark:text-secondary">
                 Starting from ₹349
               </p>
-              <p className="text-gray-500 dark:text-gray-400 text-[10px] sm:text-xs font-bold uppercase tracking-widest">
+              <p className="text-gray-500 dark:text-gray-400 text-[10px] sm:text-xs font-semibold uppercase tracking-widest">
                 Best price guaranteed
               </p>
             </div>
@@ -52,26 +52,26 @@ const Hero = () => {
           <div className="mt-8 sm:mt-10 order-3 lg:order-3">
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start px-4 sm:px-0">
               <Link
-                href="#contact"
-                className="bg-primary text-white px-8 py-4 rounded-xl font-bold text-center hover:bg-primary-dark transition shadow-lg shadow-teal-100 dark:shadow-teal-900/10 active:scale-95"
+                href="#booking-form"
+                className="bg-primary text-white px-8 py-4 rounded-xl font-semibold text-center hover:bg-primary-dark transition shadow-lg shadow-teal-100 dark:shadow-teal-900/10 active:scale-95"
               >
                 Book Your Stay
               </Link>
               <Link
                 href="#rooms"
-                className="border-2 border-secondary text-primary dark:text-secondary px-8 py-4 rounded-xl font-bold text-center hover:bg-secondary-light dark:hover:bg-secondary/10 transition active:scale-95"
+                className="border-2 border-secondary text-primary dark:text-secondary px-8 py-4 rounded-xl font-semibold text-center hover:bg-secondary-light dark:hover:bg-secondary/10 transition active:scale-95"
               >
                 View Rooms
               </Link>
             </div>
             <div className="mt-8 sm:mt-10 flex flex-wrap justify-center lg:justify-start items-center gap-4 sm:gap-6 text-xs sm:text-sm">
-              <span className="flex items-center gap-2 text-primary dark:text-secondary font-bold">
+              <span className="flex items-center gap-2 text-primary dark:text-secondary font-semibold">
                 <Bed className="h-4 w-4 sm:h-5 sm:h-5" /> Clean Bed
               </span>
-              <span className="flex items-center gap-2 text-primary dark:text-secondary font-bold">
+              <span className="flex items-center gap-2 text-primary dark:text-secondary font-semibold">
                 <Wifi className="h-4 w-4 sm:h-5 sm:h-5" /> Free Wi-Fi
               </span>
-              <span className="flex items-center gap-2 text-primary dark:text-secondary font-bold">
+              <span className="flex items-center gap-2 text-primary dark:text-secondary font-semibold">
                 <ShieldCheck className="h-4 w-4 sm:h-5 sm:h-5" /> Safe
                 Environment
               </span>

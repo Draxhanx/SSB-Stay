@@ -10,6 +10,15 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+// Verify connection configuration
+transporter.verify(function (error, success) {
+  if (error) {
+    console.error("SMTP Connection Error:", error);
+  } else {
+    console.log("SMTP Server is ready to take our messages");
+  }
+});
+
 export const sendEnquiryEmail = async (enquiryData: any) => {
   const adminEmail = process.env.ADMIN_EMAIL;
 
@@ -19,7 +28,7 @@ export const sendEnquiryEmail = async (enquiryData: any) => {
   }
 
   const mailOptions = {
-    from: `"HostelHub Enquiry" <${process.env.SMTP_USER}>`,
+    from: `"Shaurya SSB Stay Enquiry" <${process.env.SMTP_USER}>`,
     to: adminEmail,
     subject: `New Enquiry from ${enquiryData.name}`,
     html: `

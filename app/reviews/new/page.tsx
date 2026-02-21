@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Star, Send } from "lucide-react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 
@@ -27,25 +28,25 @@ export default function NewReviewPage() {
       });
 
       if (res.ok) {
-        alert("Thank you for your review!");
+        toast.success("Thank you for your review!");
         router.push("/");
       }
     } catch (err) {
-      alert("Something went wrong");
+      toast.error("Something went wrong");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-background transition-colors duration-300">
       <Navbar />
       <div className="pt-32 pb-20 px-4">
-        <div className="max-w-xl mx-auto bg-white p-10 rounded-3xl shadow-2xl border border-secondary/10">
-          <h1 className="text-3xl font-heading font-black text-primary mb-2">
+        <div className="max-w-xl mx-auto bg-card p-10 rounded-xl shadow-2xl border border-border transition-colors duration-300">
+          <h1 className="text-4xl font-heading font-semibold text-primary dark:text-secondary mb-2">
             Share Your Experience
           </h1>
-          <p className="text-gray-500 mb-8 font-medium">
+          <p className="text-gray-500 dark:text-gray-400 mb-8 font-medium transition-colors duration-300">
             Your feedback helps fellow students!
           </p>
 
@@ -63,7 +64,7 @@ export default function NewReviewPage() {
                     className={
                       star <= rating
                         ? "fill-secondary text-secondary"
-                        : "text-gray-200"
+                        : "text-gray-200 dark:text-gray-800"
                     }
                   />
                 </button>
@@ -71,13 +72,13 @@ export default function NewReviewPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-primary mb-2">
+              <label className="block text-xs font-semibold uppercase tracking-widest text-primary dark:text-secondary mb-2">
                 Full Name
               </label>
               <input
                 type="text"
                 required
-                className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-primary focus:bg-white outline-none transition"
+                className="w-full px-5 py-4 bg-background border border-border rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:bg-background outline-none transition"
                 placeholder="Rahul Sharma"
                 value={formData.name}
                 onChange={(e) =>
@@ -87,12 +88,12 @@ export default function NewReviewPage() {
             </div>
 
             <div>
-              <label className="block text-xs font-black uppercase tracking-widest text-primary mb-2">
+              <label className="block text-xs font-semibold uppercase tracking-widest text-primary dark:text-secondary mb-2">
                 Your Review
               </label>
               <textarea
                 required
-                className="w-full px-5 py-4 bg-gray-50 border border-gray-100 rounded-2xl focus:ring-2 focus:ring-primary focus:bg-white outline-none h-32 resize-none transition"
+                className="w-full px-5 py-4 bg-background border border-border rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:bg-background outline-none h-32 resize-none transition"
                 placeholder="How was your stay?"
                 value={formData.comment}
                 onChange={(e) =>
@@ -104,7 +105,7 @@ export default function NewReviewPage() {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="w-full py-5 px-6 rounded-2xl shadow-xl text-white bg-primary hover:bg-primary-dark font-black text-lg transition flex items-center justify-center gap-3 disabled:opacity-50"
+              className="w-full py-5 px-6 rounded-xl shadow-xl text-white bg-primary hover:bg-primary-dark font-semibold text-lg transition flex items-center justify-center gap-3 disabled:opacity-50"
             >
               {isSubmitting ? (
                 "Submitting..."

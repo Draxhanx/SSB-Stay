@@ -49,14 +49,14 @@ const Facilities = () => {
           {facilities.map((facility, index) => (
             <div
               key={index}
-              className="bg-card p-8 rounded-2xl shadow-sm border border-border hover:border-primary/20 hover:shadow-md transition duration-300"
+              className="bg-card p-8 rounded-xl shadow-sm border border-border hover:border-primary/20 hover:shadow-md transition duration-300"
             >
               <div className="mb-4 flex justify-center sm:justify-start">
                 <div className="p-3 bg-secondary-light/20 dark:bg-gray-900 rounded-xl transition-colors duration-300">
                   {facility.icon}
                 </div>
               </div>
-              <h3 className="text-xl font-bold mb-2 text-primary-dark dark:text-secondary">
+              <h3 className="text-xl font-semibold mb-2 text-primary-dark dark:text-secondary">
                 {facility.name}
               </h3>
               <p className="text-gray-500 dark:text-gray-400 leading-relaxed font-medium">

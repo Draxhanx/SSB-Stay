@@ -10,7 +10,9 @@ interface Review {
   createdAt: string;
 }
 
-const ReviewsListing = ({ reviews }: { reviews: Review[] }) => {
+const ReviewsListing = ({ reviews = [] }: { reviews: Review[] }) => {
+  const reviewsArray = Array.isArray(reviews) ? reviews : [];
+
   return (
     <section className="py-10 bg-secondary-light/20 dark:bg-gray-950 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -23,16 +25,16 @@ const ReviewsListing = ({ reviews }: { reviews: Review[] }) => {
           </p>
         </div>
 
-        {reviews.length === 0 ? (
+        {reviewsArray.length === 0 ? (
           <p className="text-center text-gray-500 italic">
             No reviews yet. Be the first to review!
           </p>
         ) : (
           <div className="grid md:grid-cols-3 gap-8 text-center sm:text-left">
-            {reviews.slice(0, 6).map((review) => (
+            {reviewsArray.slice(0, 6).map((review) => (
               <div
                 key={review._id}
-                className="bg-white dark:bg-gray-900 p-8 rounded-3xl shadow-sm border border-secondary/10 dark:border-gray-800 relative transition-all duration-300 hover:shadow-md"
+                className="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-sm border border-secondary/10 dark:border-gray-800 relative transition-all duration-300 hover:shadow-md"
               >
                 <div className="flex mb-4 justify-center sm:justify-start">
                   {[...Array(5)].map((_, i) => (
@@ -51,10 +53,10 @@ const ReviewsListing = ({ reviews }: { reviews: Review[] }) => {
                   "{review.comment}"
                 </p>
                 <div>
-                  <p className="font-black text-primary-dark dark:text-secondary">
+                  <p className="font-semibold text-primary-dark dark:text-secondary">
                     {review.name}
                   </p>
-                  <p className="text-xs text-secondary dark:text-gray-500 font-bold uppercase tracking-widest mt-1 transition-colors duration-300">
+                  <p className="text-xs text-secondary dark:text-gray-500 font-semibold uppercase tracking-widest mt-1 transition-colors duration-300">
                     Verified Guest
                   </p>
                 </div>
