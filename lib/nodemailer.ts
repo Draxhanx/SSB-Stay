@@ -10,14 +10,7 @@ const transporter = nodemailer.createTransport({
   },
 });
 
-// Verify connection configuration
-transporter.verify(function (error, success) {
-  if (error) {
-    console.error("SMTP Connection Error:", error);
-  } else {
-    console.log("SMTP Server is ready to take our messages");
-  }
-});
+// Connection verification deferred to avoid build-time errors
 
 export const sendEnquiryEmail = async (enquiryData: any) => {
   const adminEmail = process.env.ADMIN_EMAIL;

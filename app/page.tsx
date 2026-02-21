@@ -11,6 +11,11 @@ import Review from "@/models/Review";
 
 async function getReviews() {
   try {
+    if (!process.env.MONGODB_URI) {
+      console.warn("MONGODB_URI missing, skipping review fetch during build");
+      return [];
+    }
+
     await connectDB();
     const reviews = await Review.find({ isApproved: true })
       .sort({ createdAt: -1 })
