@@ -4,7 +4,7 @@ import { Bed, Wifi, ShieldCheck } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="relative pt-20 sm:pt-24 pb-12 sm:pb-20 lg:pb-10 overflow-hidden bg-background transition-colors duration-300">
+    <section className="relative pt-26 sm:pt-24 pb-12 sm:pb-20 lg:pb-10 overflow-hidden bg-background transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-12 items-center">
           {/* 1. Header & Text - Top on all screens */}
