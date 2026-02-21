@@ -1,0 +1,143 @@
+"use client";
+
+import { useState } from "react";
+import { Send, Phone, MessageSquare } from "lucide-react";
+
+const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "+91 ",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const res = await fetch("/api/enquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        alert("Enquiry sent! We will contact you shortly.");
+        setFormData({ name: "", phone: "+91 ", message: "" });
+        (e.target as HTMLFormElement).reset();
+      } else {
+        throw new Error("Failed to send enquiry");
+      }
+    } catch (error) {
+      alert("Something went wrong. Please try again or call us directly.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <section
+      id="contact"
+      className="py-20 bg-primary dark:bg-gray-950 text-white transition-colors duration-300"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <h2 className="text-4xl lg:text-4xl font-heading font-semibold mb-6 text-white dark:text-secondary">
+              Quick Booking & Enquiry
+            </h2>
+            <p className="text-teal-50 dark:text-gray-400 mb-8 text-lg opacity-90 leading-relaxed font-medium transition-colors duration-300">
+              Traveling for an exam or interview? Don't worry about
+              accommodation. Fill the form or contact us directly on WhatsApp
+              for an instant response.
+            </p>
+
+            <div className="space-y-6">
+              <div className="flex flex-wrap gap-4">
+                <a
+                  href="https://wa.me/917300096956"
+                  target="_blank"
+                  className="flex items-center gap-2 bg-green-500 text-white px-8 py-4 rounded-xl font-semibold hover:bg-green-600 transition shadow-lg shadow-black/10"
+                >
+                  WhatsApp Us
+                </a>
+                <a
+                  href="tel:+917300096956"
+                  className="flex items-center gap-2 bg-secondary text-primary-dark px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-primary transition shadow-lg shadow-black/10"
+                >
+                  <Phone className="h-5 w-5" /> Call Now
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="bg-white dark:bg-gray-900 p-8 rounded-xl text-gray-900 dark:text-gray-100 shadow-2xl relative overflow-hidden border dark:border-gray-800 transition-colors duration-300">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-secondary-light/30 dark:bg-secondary/5 rounded-bl-full -mr-10 -mt-10 transition-colors duration-300" />
+            <form onSubmit={handleSubmit} className="space-y-4 relative z-10">
+              <div>
+                <label className="block text-sm font-semibold text-primary dark:text-secondary mb-1">
+                  Full Name
+                </label>
+                <input
+                  type="text"
+                  required
+                  className="w-full px-4 py-3 border border-secondary/20 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none transition dark:placeholder-gray-500"
+                  placeholder="John Doe"
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-primary dark:text-secondary mb-1">
+                  Phone Number
+                </label>
+                <div className="relative">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-1 pointer-events-none">
+                    <span className="text-lg">🇮🇳</span>
+                  </span>
+                  <input
+                    type="tel"
+                    required
+                    value={formData.phone}
+                    className="w-full pl-12 pr-4 py-3 border border-secondary/20 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none transition dark:placeholder-gray-500"
+                    placeholder="+91 00000 00000"
+                    onChange={(e) =>
+                      setFormData({ ...formData, phone: e.target.value })
+                    }
+                  />
+                </div>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-primary dark:text-secondary mb-1">
+                  Special Message (Optional)
+                </label>
+                <textarea
+                  className="w-full px-4 py-3 border border-secondary/20 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none h-24 resize-none transition dark:placeholder-gray-500"
+                  placeholder="Any specific requests?"
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full bg-secondary text-primary-dark py-4 rounded-xl font-semibold text-lg hover:bg-orange-400 dark:hover:bg-white transition flex items-center justify-center gap-2 shadow-lg shadow-secondary/10 disabled:opacity-50"
+              >
+                {loading ? (
+                  "Sending..."
+                ) : (
+                  <>
+                    <Send className="h-5 w-5" /> Send Enquiry
+                  </>
+                )}
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Contact;
