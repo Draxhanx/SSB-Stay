@@ -7,6 +7,7 @@ const Contact = () => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "+91 ",
+    roomType: "",
     message: "",
   });
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,7 @@ const Contact = () => {
 
       if (res.ok) {
         alert("Enquiry sent! We will contact you shortly.");
-        setFormData({ name: "", phone: "+91 ", message: "" });
+        setFormData({ name: "", phone: "+91 ", roomType: "", message: "" });
         (e.target as HTMLFormElement).reset();
       } else {
         throw new Error("Failed to send enquiry");
@@ -106,6 +107,24 @@ const Contact = () => {
                     }
                   />
                 </div>
+              </div>
+              <div>
+                <label className="block text-sm font-semibold text-primary dark:text-secondary mb-1">
+                  Room Preference
+                </label>
+                <select
+                  className="w-full px-4 py-3 border border-border bg-background rounded-xl focus:ring-2 focus:ring-primary dark:focus:ring-secondary focus:border-transparent outline-none transition"
+                  onChange={(e) =>
+                    setFormData({ ...formData, roomType: e.target.value })
+                  }
+                  required
+                >
+                  <option value="">Select a room type</option>
+                  <option value="Shared Dormitory">
+                    Shared Dormitory (₹349)
+                  </option>
+                  <option value="Personal Cabin">Personal Cabin (₹349)</option>
+                </select>
               </div>
               <div>
                 <label className="block text-sm font-semibold text-primary dark:text-secondary mb-1">
