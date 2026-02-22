@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins, Inter } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
@@ -85,6 +86,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${poppins.variable} font-sans antialiased`}
       >
+        <Analytics />
         <Providers>{children}</Providers>
       </body>
     </html>
