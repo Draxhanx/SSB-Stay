@@ -1,11 +1,15 @@
 import Navbar from "@/components/shared/Navbar";
 import Hero from "@/components/shared/Hero";
-import Facilities from "@/components/shared/Facilities";
-import Rooms from "@/components/shared/Rooms";
-import FAQ from "@/components/shared/FAQ";
-import Contact from "@/components/shared/Contact";
-import Footer from "@/components/shared/Footer";
-import ReviewsListing from "@/components/shared/ReviewsListing";
+import dynamic from "next/dynamic";
+
+const Facilities = dynamic(() => import("@/components/shared/Facilities"));
+const Rooms = dynamic(() => import("@/components/shared/Rooms"));
+const FAQ = dynamic(() => import("@/components/shared/FAQ"));
+const Contact = dynamic(() => import("@/components/shared/Contact"));
+const Footer = dynamic(() => import("@/components/shared/Footer"));
+const ReviewsListing = dynamic(
+  () => import("@/components/shared/ReviewsListing"),
+);
 import connectDB from "@/lib/mongodb";
 import Review from "@/models/Review";
 

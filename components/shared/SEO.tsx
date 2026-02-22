@@ -1,16 +1,34 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Affordable One-Night Stay for Students & Interview Candidates",
+  title:
+    "Shaurya SSB Stay | One-Night Dormitory Stay for SSB, Defence & Army Aspirants in Lalghati Bhopal at ₹349",
   description:
-    "Specially designed accommodation for students and job candidates. Clean, safe, and near major exam centers.",
+    "Shaurya SSB Stay offers clean, safe, and budget-friendly dormitory and one-night accommodation for SSB students, defence and army aspirants starting at just ₹349. Located in Lalghati, Bhopal near SSB centers and Gufa Mandir, ideal as a low-cost hostel and affordable hotel alternative for SSB interview candidates.",
   alternates: {
     canonical: "/",
   },
+  keywords: [
+    "Shaurya SSB Stay",
+    "SSB stay in Bhopal",
+    "SSB accommodation Lalghati",
+    "SSB dormitory stay",
+    "one night stay for SSB students",
+    "SSB interview stay near SSB center",
+    "defence aspirant accommodation",
+    "army aspirant stay near SSB",
+    "low cost hostel for SSB students",
+    "budget hostel in Lalghati Bhopal",
+    "cheap hotel near SSB center",
+    "SSB stay near Gufa Mandir",
+    "SSB stay at 349",
+    "budget stay for defence and army aspirants",
+  ],
   openGraph: {
-    title: "Affordable One-Night Stay for Students",
+    title:
+      "Shaurya SSB Stay | Affordable SSB Dormitory & One-Night Stay in Bhopal at ₹349",
     description:
-      "Budget-friendly accommodation with Wi-Fi, RO water, and clean beds.",
+      "Low-cost dormitory and one-night stay for SSB students, defence and army aspirants in Lalghati, Bhopal near SSB center and Gufa Mandir.",
     type: "website",
   },
 };
@@ -18,18 +36,27 @@ export const metadata: Metadata = {
 const JsonLd = () => {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
-    name: "Shaurya ssb stay",
+    "@type": "LodgingBusiness",
+    name: "Shaurya SSB Stay",
     description:
-      "Affordable one-night stay for students and interview candidates.",
+      "Affordable one-night dormitory and hostel-style accommodation for SSB students, defence and army aspirants near SSB center and Gufa Mandir in Lalghati, Bhopal.",
     priceRange: "₹349",
     address: {
       "@type": "PostalAddress",
-      addressLocality: "Bhopal",
+      addressLocality: "Lalghati",
       addressRegion: "Madhya Pradesh",
       addressCountry: "IN",
     },
+    areaServed: {
+      "@type": "City",
+      name: "Bhopal",
+    },
     amenityFeature: [
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Low-cost Dormitory",
+        value: true,
+      },
       {
         "@type": "LocationFeatureSpecification",
         name: "Free Wi-Fi",
@@ -37,7 +64,12 @@ const JsonLd = () => {
       },
       {
         "@type": "LocationFeatureSpecification",
-        name: "RO Water",
+        name: "RO Drinking Water",
+        value: true,
+      },
+      {
+        "@type": "LocationFeatureSpecification",
+        name: "Clean Bedding",
         value: true,
       },
     ],
@@ -58,26 +90,26 @@ export const FaqJsonLd = () => {
     mainEntity: [
       {
         "@type": "Question",
-        name: "Is one-night stay allowed for students and SSB candidates?",
+        name: "Is one-night stay available for SSB students and defence aspirants?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, we provide affordable and safe one-night stay options specially designed for students and SSB interview candidates.",
+          text: "Yes, Shaurya SSB Stay provides affordable one-night dormitory accommodation specially designed for SSB students, defence and army aspirants.",
         },
       },
       {
         "@type": "Question",
-        name: "Is the accommodation safe for students?",
+        name: "What is the price for one-night stay?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, the stay is safe, clean, and student-friendly with secure surroundings and basic amenities.",
+          text: "The one-night dormitory stay starts at just ₹349, making it a low-cost hostel and budget hotel alternative for SSB interview candidates.",
         },
       },
       {
         "@type": "Question",
-        name: "How far is the stay from major exam or SSB centers?",
+        name: "Is Shaurya SSB Stay located near SSB center and Gufa Mandir?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Our accommodation is located near major exam and SSB interview centers to reduce travel stress for candidates.",
+          text: "Yes, the stay is located in Lalghati, Bhopal, close to SSB centers and Gufa Mandir, helping candidates reduce travel stress during interviews.",
         },
       },
     ],
